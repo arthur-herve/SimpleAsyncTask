@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextView;
+    private ProgressBar mProgressBar;
     private static final String TEXT_STATE = "currentText";
 
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTextView = (TextView) findViewById(R.id.textView1);
+        mProgressBar = (ProgressBar) findViewById((R.id.progressBar));
         // Restaure TextView s'il y a un saveInstanceState
         if(savedInstanceState!=null){
             mTextView.setText(savedInstanceState.getString(TEXT_STATE));
@@ -33,6 +36,6 @@ public class MainActivity extends AppCompatActivity {
         // Placer un message dans la vue texte
         mTextView.setText(R.string.napping);
         // Démarre l'AsyncTask.
-        new SimpleAsyncTask(mTextView).execute();
+        new SimpleAsyncTask(mTextView, mProgressBar).execute();
     }
 }
